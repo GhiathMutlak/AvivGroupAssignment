@@ -1,5 +1,6 @@
 package com.perfecta.avivgroupassignment.data.networking
 
+import com.perfecta.avivgroupassignment.di.BASE_URL
 import com.perfecta.avivgroupassignment.domain.util.AvivResult
 import com.perfecta.avivgroupassignment.domain.util.DataError
 import io.ktor.client.HttpClient
@@ -15,8 +16,6 @@ import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import kotlinx.serialization.SerializationException
 import java.nio.channels.UnresolvedAddressException
-
-const val BASE_URL = "https://gsl-apps-technical-test.dignp.com"
 
 suspend inline fun <reified Response: Any> HttpClient.get(
     route: String,

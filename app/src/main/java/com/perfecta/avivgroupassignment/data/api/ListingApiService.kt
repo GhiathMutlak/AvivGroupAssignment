@@ -6,9 +6,12 @@ import com.perfecta.avivgroupassignment.data.networking.get
 import com.perfecta.avivgroupassignment.domain.util.AvivResult
 import com.perfecta.avivgroupassignment.domain.util.DataError
 import io.ktor.client.HttpClient
+import javax.inject.Inject
 
 
-class ListingApiService(private val client: HttpClient) {
+class ListingApiService @Inject constructor(
+    private val client: HttpClient
+) {
 
     suspend fun getListings(): AvivResult<ListingsResponse, DataError> =
         client.get<ListingsResponse>("listings.json")
