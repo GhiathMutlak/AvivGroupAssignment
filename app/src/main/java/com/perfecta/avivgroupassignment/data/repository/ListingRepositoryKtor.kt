@@ -8,8 +8,9 @@ import com.perfecta.avivgroupassignment.domain.util.DataError
 import com.perfecta.avivgroupassignment.domain.util.Error
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
+import javax.inject.Inject
 
-class ListingRepositoryKtor(
+class ListingRepositoryKtor @Inject constructor(
     private val api: ListingApiService
 ): ListingRepository {
     override suspend fun getListings(): AvivResult<List<Listing>, Error> {

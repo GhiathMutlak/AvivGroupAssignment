@@ -8,25 +8,25 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ListingDto(
     @SerialName("id")
-    val id: Int?,
+    val id: Int,
     @SerialName("city")
-    val city: String?,
+    val city: String? = null,
     @SerialName("price")
-    val price: Double?,
+    val price: Double? = null,
     @SerialName("area")
-    val area: Double?,
+    val area: Double? = null,
     @SerialName("bedrooms")
-    val bedrooms: Int?,
+    val bedrooms: Int? = null,
     @SerialName("rooms")
-    val rooms: Int?,
+    val rooms: Int? = null,
     @SerialName("url")
-    val url: String?,
+    val url: String? = null,
     @SerialName("professional")
-    val professional: String?,
+    val professional: String? = null,
     @SerialName("propertyType")
-    val propertyType: String?,
+    val propertyType: String? = null,
     @SerialName("offerType")
-    val offerType: Int?
+    val offerType: Int? = null
 ) {
     fun toDomainModel(): Listing {
         return Listing(
