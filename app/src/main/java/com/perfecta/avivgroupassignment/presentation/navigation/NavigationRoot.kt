@@ -8,6 +8,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.perfecta.avivgroupassignment.presentation.details.DetailsContract
+import com.perfecta.avivgroupassignment.presentation.details.DetailsScreen
+import com.perfecta.avivgroupassignment.presentation.details.DetailsViewModel
 import com.perfecta.avivgroupassignment.presentation.listings.ListingsContract
 import com.perfecta.avivgroupassignment.presentation.listings.ListingsScreen
 import com.perfecta.avivgroupassignment.presentation.listings.ListingsViewModel
@@ -46,7 +49,22 @@ fun NavigationRoot(navController: NavHostController) {
             route = ListingDetails.route,
             arguments = ListingDetails.arguments
         ) { navBackStackEntry ->
-            val listingId = navBackStackEntry.arguments?.getInt(ListingDetails.LISTING_ID_ARG)
+            val viewModel: DetailsViewModel = hiltViewModel()
+            val state by viewModel.state.collectAsStateWithLifecycle()
+
+            LaunchedEffect(Unit) {
+                viewModel.events.collectLatest { event ->
+                    when (event) {
+                        DetailsContract.Event.NavigateBack -> navController.popBackStack()
+                        is DetailsContract.Event.ShowError -> TODO()
+                    }
+                }
+            }
+
+            DetailsScreen(
+                state = state,
+                onAction = viewModel::onAction
+            )
         }
     }
 }

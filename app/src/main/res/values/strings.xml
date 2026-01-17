@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">AvivGroupAssignment</string>
+    <string name="property_details">Property Details</string>
+
+    <!-- App Bar Titles -->
+    <string name="app_bar_title_listings">Aviv Real Estate</string>
+
+    <!-- Labels -->
+    <string name="label_area">Area</string>
+    <string name="label_bedrooms">Bedrooms</string>
+    <string name="label_rooms">Rooms</string>
+    <string name="label_professional">Professional</string>
+
+    <!-- Content Descriptions -->
+    <string name="content_desc_property_image">Property image</string>
+    <string name="content_desc_back">Back</string>
+
+    <!-- Common Text -->
+    <string name="text_not_available">N/A</string>
+
+    <!-- Error View -->
+    <string name="error_title">Oops! Something went wrong</string>
+    <string name="button_retry">Retry</string>
+
+    <!-- Formatting -->
+    <string name="currency_format">€%s</string>
+    <string name="area_format">%s m²</string>
+    <string name="bedrooms_format">%d bedrooms</string>
+    <string name="rooms_format">%d rooms</string>
+
+    <!-- Offer Types -->
+    <string name="offer_type_sale">For Sale</string>
+    <string name="offer_type_rent">For Rent</string>
+    <string name="offer_type_mortgage">Mortgaged</string>
 </resources>

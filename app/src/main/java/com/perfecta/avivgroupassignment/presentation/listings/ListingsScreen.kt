@@ -32,9 +32,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import coil.compose.AsyncImage
+import com.perfecta.avivgroupassignment.R
 import com.perfecta.avivgroupassignment.domain.model.Listing
 import com.perfecta.avivgroupassignment.presentation.common.LoadingIndicator
+import com.perfecta.avivgroupassignment.presentation.common.localizedArea
+import com.perfecta.avivgroupassignment.presentation.common.localizedName
+import com.perfecta.avivgroupassignment.presentation.common.localizedPrice
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,7 +51,7 @@ fun ListingsScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Aviv Real Estate") },
+                title = { Text(stringResource(R.string.app_bar_title_listings)) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -113,34 +119,41 @@ private fun ListingCard(
             ) {
                 AsyncImage(
                     model = listing.imageUrl,
-                    contentDescription = "Property image",
+                    contentDescription = stringResource(R.string.content_desc_property_image),
                     modifier = Modifier
                         .fillMaxSize()
                         .clip(RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Crop,
+                    placeholder = painterResource(R.drawable.ic_house_placeholder),
+                    error = painterResource(R.drawable.ic_house_placeholder),
+                    fallback = painterResource(R.drawable.ic_house_placeholder)
                 )
-                Surface(
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(8.dp),
-                    color = MaterialTheme.colorScheme.primaryContainer,
-                    shape = RoundedCornerShape(8.dp)
-                ) {
-                    Text(
-                        text = listing.offerType?.displayName ?: "",
-                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        fontWeight = FontWeight.Bold
-                    )
+
+                listing.offerType?.let { offerType ->
+                    Surface(
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .padding(8.dp),
+                        color = MaterialTheme.colorScheme.primaryContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Text(
+                            text = offerType.localizedName(),
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
+
             }
 
             Column(
                 modifier = Modifier.padding(16.dp)
             ) {
                 Text(
-                    text = listing.formattedPrice,
+                    text = listing.localizedPrice(),
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
@@ -159,21 +172,22 @@ private fun ListingCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Spacer(modifier = Modifier.height(12.dp))
+                val notAvailable = stringResource(R.string.text_not_available)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     PropertyDetail(
-                        label = "Area",
-                        value = listing.formattedArea
+                        label = stringResource(R.string.label_area),
+                        value = listing.localizedArea()
                     )
                     PropertyDetail(
-                        label = "Bedrooms",
-                        value = listing.bedrooms?.toString() ?: "N/A"
+                        label = stringResource(R.string.label_bedrooms),
+                        value = listing.bedrooms?.toString() ?: notAvailable
                     )
                     PropertyDetail(
-                        label = "Rooms",
-                        value = listing.rooms?.toString() ?: "N/A"
+                        label = stringResource(R.string.label_rooms),
+                        value = listing.rooms?.toString() ?: notAvailable
                     )
                 }
             }
