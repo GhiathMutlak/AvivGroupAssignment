@@ -1,6 +1,6 @@
 package com.perfecta.avivgroupassignment.di
 
-import com.perfecta.avivgroupassignment.data.repository.ListingRepositoryKtor
+import com.perfecta.avivgroupassignment.data.repository.OfflineFirstListingRepository
 import com.perfecta.avivgroupassignment.domain.repository.ListingRepository
 import dagger.Binds
 import dagger.Module
@@ -14,5 +14,5 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindListingRepository(listingRepository: ListingRepositoryKtor): ListingRepository
+    abstract fun bindListingRepository(listingRepository: OfflineFirstListingRepository): ListingRepository
 }

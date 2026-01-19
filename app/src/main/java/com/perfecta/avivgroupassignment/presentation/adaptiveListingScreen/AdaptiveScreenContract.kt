@@ -8,7 +8,8 @@ object AdaptiveScreenContract {
         val isListingsLoading: Boolean = false,
         val selectedListingId: Int? = null,
         val selectedListing: Listing? = null,
-        val isDetailsLoading: Boolean = false
+        val isDetailsLoading: Boolean = false,
+        val isRefreshing: Boolean = false,
     )
 
     sealed interface Action {
@@ -16,6 +17,7 @@ object AdaptiveScreenContract {
         data object RetryLoadListings: Action
         data class OnListingClicked(val listingId: Int): Action
         data object ClearSelection: Action
+        data object RefreshListings : Action
     }
 
     sealed interface Event {
