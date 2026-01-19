@@ -1,4 +1,4 @@
-package com.perfecta.avivgroupassignment.data.dto
+package com.perfecta.avivgroupassignment.data.remote.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

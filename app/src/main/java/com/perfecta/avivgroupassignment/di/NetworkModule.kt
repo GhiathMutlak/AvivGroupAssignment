@@ -1,6 +1,6 @@
 package com.perfecta.avivgroupassignment.di
 
-import com.perfecta.avivgroupassignment.data.api.ListingApiService
+import com.perfecta.avivgroupassignment.data.remote.api.ListingApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

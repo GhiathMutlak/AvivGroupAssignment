@@ -1,4 +1,4 @@
-package com.perfecta.avivgroupassignment.data.dto
+package com.perfecta.avivgroupassignment.data.remote.dto
 
 import com.perfecta.avivgroupassignment.domain.model.Listing
 import com.perfecta.avivgroupassignment.domain.model.OfferType

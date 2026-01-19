@@ -1,7 +1,7 @@
-package com.perfecta.avivgroupassignment.data.api
+package com.perfecta.avivgroupassignment.data.remote.api
 
-import com.perfecta.avivgroupassignment.data.dto.ListingDto
-import com.perfecta.avivgroupassignment.data.dto.ListingsResponse
+import com.perfecta.avivgroupassignment.data.remote.dto.ListingDto
+import com.perfecta.avivgroupassignment.data.remote.dto.ListingsResponse
 import com.perfecta.avivgroupassignment.data.networking.get
 import com.perfecta.avivgroupassignment.domain.util.AvivResult
 import com.perfecta.avivgroupassignment.domain.util.DataError

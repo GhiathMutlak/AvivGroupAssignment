@@ -89,4 +89,9 @@ dependencies {
     // Adaptive Layout
     implementation(libs.bundles.adaptive)
 
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
 }
