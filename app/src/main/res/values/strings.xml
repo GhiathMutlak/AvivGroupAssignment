@@ -17,6 +17,7 @@
 
     <!-- Common Text -->
     <string name="text_not_available">N/A</string>
+    <string name="select_listing_prompt">Select a listing to view details</string>
 
     <!-- Error View -->
     <string name="error_title">Oops! Something went wrong</string>

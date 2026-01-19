@@ -1,5 +1,6 @@
 package com.perfecta.avivgroupassignment.presentation.details
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,20 +14,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,57 +27,19 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.perfecta.avivgroupassignment.R
 import com.perfecta.avivgroupassignment.domain.model.Listing
-import com.perfecta.avivgroupassignment.presentation.common.LoadingIndicator
+import com.perfecta.avivgroupassignment.domain.model.OfferType
+import com.perfecta.avivgroupassignment.ui.theme.AvivGroupAssignmentTheme
 import com.perfecta.avivgroupassignment.presentation.common.localizedArea
 import com.perfecta.avivgroupassignment.presentation.common.localizedName
 import com.perfecta.avivgroupassignment.presentation.common.localizedPrice
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailsScreen(
-    state: DetailsContract.State,
-    onAction: (DetailsContract.Action) -> Unit
-) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(stringResource(R.string.property_details)) },
-                navigationIcon = {
-                    IconButton(onClick = { onAction(DetailsContract.Action.NavigateBack) }) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.content_desc_back)
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
-                )
-            )
-        }
-    ) { paddingValues ->
-        when {
-            state.isLoading -> {
-                LoadingIndicator()
-            }
-
-            state.listing != null -> {
-                ListingDetailsContent(
-                    listing = state.listing,
-                    modifier = Modifier.padding(paddingValues)
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun ListingDetailsContent(
+fun ListingDetailsContent(
     listing: Listing,
     modifier: Modifier = Modifier
 ) {
@@ -197,7 +152,6 @@ private fun ListingDetailsContent(
                             value = it
                         )
                     }
-
                 }
             }
         }
@@ -221,5 +175,50 @@ private fun DetailRow(label: String, value: String) {
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.SemiBold
         )
+    }
+}
+
+
+private val previewListingSale = Listing(
+    id = 1,
+    city = "Paris",
+    price = 450000.0,
+    area = 85.0,
+    bedrooms = 2,
+    rooms = 4,
+    imageUrl = null,
+    professional = "GSL CONTACTING",
+    propertyType = "Apartment",
+    offerType = OfferType.SALE
+)
+
+private val previewListingRent = Listing(
+    id = 2,
+    city = "Lyon",
+    price = 1200.0,
+    area = 45.0,
+    bedrooms = 1,
+    rooms = 2,
+    imageUrl = null,
+    professional = "GSL CONTACTING",
+    propertyType = "Studio",
+    offerType = OfferType.RENT
+)
+
+@Preview(showBackground = true, widthDp = 400, heightDp = 700)
+@Composable
+private fun ListingDetailsContentSalePreview() {
+    AvivGroupAssignmentTheme {
+        ListingDetailsContent(listing = previewListingSale)
+    }
+}
+
+@Preview(showBackground = true, widthDp = 400, heightDp = 700,
+    uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
+)
+@Composable
+private fun ListingDetailsContentRentPreview() {
+    AvivGroupAssignmentTheme {
+        ListingDetailsContent(listing = previewListingRent)
     }
 }

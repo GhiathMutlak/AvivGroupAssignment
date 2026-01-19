@@ -86,4 +86,7 @@ dependencies {
     // Coin
     implementation(libs.coil.compose)
 
+    // Adaptive Layout
+    implementation(libs.bundles.adaptive)
+
 }
