@@ -18,10 +18,12 @@
     <!-- Common Text -->
     <string name="text_not_available">N/A</string>
     <string name="select_listing_prompt">Select a listing to view details</string>
+    <string name="no_listings_available">Sorry, no listings available</string>
 
     <!-- Error View -->
     <string name="error_title">Oops! Something went wrong</string>
     <string name="button_retry">Retry</string>
+    <string name="refresh">Refresh</string>
 
     <!-- Formatting -->
     <string name="currency_format">€%s</string>
