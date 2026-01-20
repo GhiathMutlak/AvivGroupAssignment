@@ -1,7 +1,6 @@
 package com.perfecta.avivgroupassignment.data.repository
 
 import android.database.sqlite.SQLiteFullException
-import android.util.Log.e
 import com.perfecta.avivgroupassignment.data.local.dao.ListingDao
 import com.perfecta.avivgroupassignment.data.local.entity.ListingEntity
 import com.perfecta.avivgroupassignment.data.remote.api.ListingApiService
@@ -12,13 +11,11 @@ import com.perfecta.avivgroupassignment.domain.util.DataError
 import com.perfecta.avivgroupassignment.domain.util.EmptyResult
 import com.perfecta.avivgroupassignment.domain.util.Error
 import com.perfecta.avivgroupassignment.domain.util.asEmptyResult
-import com.perfecta.avivgroupassignment.domain.util.map
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 /**

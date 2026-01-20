@@ -40,7 +40,6 @@ class AdaptiveListingsViewModel @Inject constructor(
     fun onAction(action: AdaptiveScreenContract.Action) {
         when (action) {
             is AdaptiveScreenContract.Action.LoadListings -> loadListings()
-            is AdaptiveScreenContract.Action.RetryLoadListings -> loadListings()
             is AdaptiveScreenContract.Action.OnListingClicked -> {
                 _state.update { it.copy(selectedListingId = action.listingId) }
                 loadListingDetails(action.listingId)

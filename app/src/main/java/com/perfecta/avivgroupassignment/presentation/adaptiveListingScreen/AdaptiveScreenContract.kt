@@ -14,7 +14,6 @@ object AdaptiveScreenContract {
 
     sealed interface Action {
         data object LoadListings: Action
-        data object RetryLoadListings: Action
         data class OnListingClicked(val listingId: Int): Action
         data object ClearSelection: Action
         data object RefreshListings : Action
